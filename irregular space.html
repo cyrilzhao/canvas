@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>不规则的密室</title>
+    <script src="Vector.js" type="text/javascript"></script>
+    <script src="Line.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div style="width:620px;margin:0 auto;">
+    <canvas id="myCanvas" width=600 height=600 style="border:10px solid gray;">
+    </canvas>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    (function(window){
+        var MathHelp = {} ;
+
+        MathHelp.getRandomNumber = function(min, max) {
+            return (min + Math.random() * ( max - min + 1 )) ;
+        };
+
+        window.MathHelp = MathHelp ;
+    }(window));
+
+    (function(window){
+        var balls = [] ;
+        for( var i = 0 ; i < 50 ; i ++ ) {
+            var ball = {
+                position : new Vector2(300, 300) ,
+                r : 5 ,
+                velocity : new Vector2(MathHelp.getRandomNumber(-300, 300), MathHelp.getRandomNumber(-300, 300)) ,
+                draw : function() {
+                    ctx.beginPath() ;
+                    ctx.arc(this.position.x, this.position.y, this.r, 0, Math.PI*2, true) ;
+                    ctx.closePath() ;
+                    ctx.fill() ;
+                }
+            } ;
+
+            balls.push(ball) ;
+        }
+
+        var p1 = new Vector2(200, 100) ;
+        var p2 = new Vector2(400, 100) ;
+        var p3 = new Vector2(500, 273) ;
+        var p4 = new Vector2(400, 446) ;
+        var p5 = new Vector2(200, 446) ;
+        var p6 = new Vector2(100, 273) ;
+
+        var lines = [] ;
+        lines[0] = new Line() ;
+        lines[0].setLineInTwoPointForm(p1.x, p1.y, p2.x, p2.y) ;
+        lines[1] = new Line() ;
+        lines[1].setLineInTwoPointForm(p2.x, p2.y, p3.x, p3.y) ;
+        lines[2] = new Line() ;
+        lines[2].setLineInTwoPointForm(p3.x, p3.y, p4.x, p4.y) ;
+        lines[3] = new Line() ;
+        lines[3].setLineInTwoPointForm(p4.x, p4.y, p5.x, p5.y) ;
+        lines[4] = new Line() ;
+        lines[4].setLineInTwoPointForm(p5.x, p5.y, p6.x, p6.y) ;
+        lines[5] = new Line() ;
+        lines[5].setLineInTwoPointForm(p6.x, p6.y, p1.x, p1.y) ;
+
+        var canvas = document.getElementById("myCanvas") ;
+        var width = canvas.width ;
+        var height = canvas.height ;
+        var ctx = canvas.getContext("2d") ;
+
+        ctx.fillStyle = "#000000" ;
+        ctx.fillRect(0, 0, width, height) ;
+        ctx.strokeStyle = "#ffffff" ;
+        ctx.beginPath() ;
+        ctx.moveTo(p1.x, p1.y) ;
+        ctx.lineTo(p2.x, p2.y) ;
+        ctx.moveTo(p2.x, p2.y) ;
+        ctx.lineTo(p3.x, p3.y) ;
+        ctx.moveTo(p3.x, p3.y) ;
+        ctx.lineTo(p4.x, p4.y) ;
+        ctx.moveTo(p4.x, p4.y) ;
+        ctx.lineTo(p5.x, p5.y) ;
+        ctx.moveTo(p5.x, p5.y) ;
+        ctx.lineTo(p6.x, p6.y) ;
+        ctx.moveTo(p6.x, p6.y) ;
+        ctx.lineTo(p1.x, p1.y) ;
+        ctx.closePath() ;
+        ctx.stroke() ;
+
+        ctx.fillStyle = "#ffffff" ;
+        for( var i = 0 ; i < balls.length ; i ++ ) {
+            ctx.beginPath() ;
+            ctx.arc(balls[i].position.x, balls[i].position.y, balls[i].r, 0, 2*Math.PI, true) ;
+            ctx.closePath() ;
+            ctx.fill() ;
+        }
+
+        var cyc = 15 ;
+        setInterval(function(){
+            ctx.fillStyle = "#000000" ;
+            ctx.fillRect(0, 0, width, height) ;
+
+            ctx.beginPath() ;
+            ctx.moveTo(p1.x, p1.y) ;
+            ctx.lineTo(p2.x, p2.y) ;
+            ctx.moveTo(p2.x, p2.y) ;
+            ctx.lineTo(p3.x, p3.y) ;
+            ctx.moveTo(p3.x, p3.y) ;
+            ctx.lineTo(p4.x, p4.y) ;
+            ctx.moveTo(p4.x, p4.y) ;
+            ctx.lineTo(p5.x, p5.y) ;
+            ctx.moveTo(p5.x, p5.y) ;
+            ctx.lineTo(p6.x, p6.y) ;
+            ctx.moveTo(p6.x, p6.y) ;
+            ctx.lineTo(p1.x, p1.y) ;
+            ctx.closePath() ;
+            ctx.stroke() ;
+
+            ctx.fillStyle = "#ffffff" ;
+            for( var i in balls ) {
+                balls[i].draw() ;
+
+                var preX = balls[i].position.x ;
+                var preY = balls[i].position.y ;
+                balls[i].position.x = balls[i].position.x + balls[i].velocity.x * ( cyc / 1000 ) ;
+                balls[i].position.y = balls[i].position.y + balls[i].velocity.y * ( cyc / 1000 ) ;
+
+                for( var j in lines ) {
+                    if( balls[i].position.distanceToLine(lines[j]) <= balls[i].r ) {
+                        balls[i].position.x = preX ;
+                        balls[i].position.y = preY ;
+                        balls[i].velocity = balls[i].velocity.reflectionSelf(lines[j].getVerticalVector()) ;
+                    }
+                }
+            }
+        },cyc) ;
+    })(window);
+</script>

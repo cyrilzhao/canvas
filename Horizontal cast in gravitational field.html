@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>模拟重力场中平抛</title>
+</head>
+
+<body>
+<div style="width:620px;margin:0 auto;">
+    <canvas id="myCanvas" width=600 height=600 style="border:1px solid gray;" >
+    </canvas>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    (function(window) {
+        var Vector2 = function(x, y) {
+            this.x = x || 0;
+            this.y = y || 0;
+        };
+        Vector2.prototype = {
+            set: function(x, y) {
+                this.x = x;
+                this.y = y;
+                return this;
+            },
+            sub: function(v) {
+                return new Vector2(this.x - v.x, this.y - v.y);
+            },
+            multiplyScalar: function(s) {
+                this.x *= s;
+                this.y *= s;
+                return this;
+            },
+            divideScalar: function(s) {
+                if (s) {
+                    this.x /= s;
+                    this.y /= s;
+                } else {
+                    this.set(0, 0);
+                }
+                return this;
+            },
+            length: function() {
+                return Math.sqrt(this.lengthSq());
+            },
+            normalize: function() {
+                return this.divideScalar(this.length());
+            },
+            lengthSq: function() {
+                return this.x * this.x + this.y * this.y;
+            },
+            distanceToSquared: function(v) {
+                var dx = this.x - v.x,
+                        dy = this.y - v.y;
+                return dx * dx + dy * dy;
+            },
+            distanceTo: function(v) {
+                return Math.sqrt(this.distanceToSquared(v));
+            },
+            setLength: function(l) {
+                return this.normalize().multiplyScalar(l);
+            }
+        };
+        window.Vector2 = Vector2;
+    } (window));
+
+    (function(window){
+        var MathHelp = {} ;
+
+        MathHelp.getRandomNumber = function(min, max) {
+            return (min + Math.random() * ( max - min + 1 )) ;
+        };
+
+        window.MathHelp = MathHelp ;
+    }(window));
+
+    (function(window){
+        var canvas = document.getElementById("myCanvas") ;
+        var width = canvas.width ;
+        var height = canvas.height ;
+        var ctx = canvas.getContext("2d") ;
+        ctx.clearRect(0, 0, width, height) ;
+        ctx.fillStyle = "#000000" ;
+        ctx.fillRect(0, 0, width, height) ;
+
+        var linearGradient = ctx.createLinearGradient(50,100,50,160) ;
+        linearGradient.addColorStop(0, "#000000") ;
+        linearGradient.addColorStop(0.5, "#ffffff") ;
+        linearGradient.addColorStop(1, "#000000") ;
+        ctx.fillStyle = linearGradient ;
+        ctx.fillRect(0, 100, 30, 60) ;
+
+        var balls = [] ;
+
+        document.onclick = function(e) {
+            var event = e || window.event ;
+            if( event.target === canvas ) {
+                var ball = {
+                    position : new Vector2(80,130) ,
+                    r : 30 ,
+                    velocity : new Vector2(MathHelp.getRandomNumber(300,500),0) ,
+                    activeInVertical : true ,
+                    activeInHorizon : true ,
+                    draw : function() {
+                        ctx.beginPath() ;
+                        ctx.arc(this.position.x, this.position.y, this.r, 0, 2*Math.PI, true) ;
+                        var radialGradient = ctx.createRadialGradient(this.position.x-15, this.position.y-10, 2, this.position.x, this.position.y, 30) ;
+                        radialGradient.addColorStop(0, "#ffffff") ;
+                        radialGradient.addColorStop(1, "#000000") ;
+                        ctx.fillStyle = radialGradient ;
+                        ctx.closePath() ;
+                        ctx.fill() ;
+                    } ,
+                    scrollInVertical : function(cyc) {
+                        var preY = this.position.y ;
+                        this.position.y = this.position.y + this.velocity.y * ( cyc / 1000 ) + 0.5 * 10 * ( cyc / 1000 ) * ( cyc / 1000 ) ;
+
+                        if( this.position.y >= height - 30 ) {
+                            this.velocity.y = this.velocity.y * ( -0.8 ) ;
+                            var tempY = this.position.y + this.velocity.y * ( cyc / 1000 ) + 0.5 * 10 * ( cyc / 1000 ) * ( cyc / 1000 ) ;
+                            if( tempY >= height - 30 ) {
+                                this.position.y = preY ;
+                            }
+                        }
+                        else {
+                            this.velocity.y = this.velocity.y + g * ( cyc / 1000 ) ;
+                        }
+                    } ,
+                    scrollInHorizon : function(cyc) {
+                        var preX = this.position.x ;
+                        this.position.x = this.position.x + this.velocity.x * ( cyc / 1000) ;
+
+                        if( this.position.x >= width - 30 || this.position.x <= 30 ) {
+                            this.velocity.x = this.velocity.x * ( -0.65 ) ;
+                            this.position.x >= width - 30 ? this.position.x = width - 31 : this.position.x = 31 ;
+                        }
+                    }
+                } ;
+                balls.push(ball) ;
+            }
+        }
+
+        var cyc = 15 ;
+        var g = 1000 ;
+        var timer = setInterval(function(){
+            ctx.fillStyle = "#000000" ;
+            ctx.fillRect(30, 100, 570, 500) ;
+            ctx.fillRect(0, 160, 570, 500) ;
+
+            for( var i in balls ) {
+                balls[i].draw() ;
+                if( balls[i].activeInVertical !== false ) {
+                    balls[i].scrollInVertical(cyc) ;
+                }
+                if( balls[i].activeInHorizon !== false ) {
+                    balls[i].scrollInHorizon(cyc) ;
+                }
+                console.log("v-x: " + Math.abs(balls[i].velocity.x) + " v-y: " + Math.abs(balls[i].velocity.y)) ;
+
+                if( Math.abs(balls[i].velocity.y) < 10 && height - balls[i].position.y <= 30 ){
+                    balls[i].activeInVertical = false ;
+                    balls[i].velocity.y = 0 ;
+                }
+                if( Math.abs(balls[i].velocity.x) < 15 ) {
+                    balls[i].activeInHorizon = false ;
+                    balls[i].velocity.x = 0 ;
+                }
+            }
+        }, cyc) ;
+    })(window);
+</script>
