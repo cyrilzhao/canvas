@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>普通方式显示冒泡排序过程</title>
+<title>普通方式显示选择排序过程</title>
 </head>
 
 <body>
@@ -60,26 +60,28 @@
             console.log("repaint") ;
         }
 
-        var i = 1 ;
+        var i = 0 ;
         var j = 0 ;
         var N = lines.length ;
+        var min = i ;
         setTimeout(function() {
-            if( lines[j].height > lines[j+1].height ) {
+            if( lines[min].height > lines[j].height ) {
                 var temp = lines[j] ;
-                lines[j] = lines[j+1] ;
-                lines[j+1] = temp ;
+                lines[j] = lines[min] ;
+                lines[min] = temp ;
                 repaint() ;
             }
 
             j ++ ;
-            if( j == N - i ) {
+            if( j == N ) {
                 i ++ ;
-                j = 0 ;
+                min = i ;
+                j = i + 1;
             }
 
 
-            if( i <= N - 1 ) {
-                setTimeout(arguments.callee,50) ;
+            if( i < N - 1 ) {
+                setTimeout(arguments.callee,30) ;
             }
             else {
                 var text = "" ;
@@ -88,6 +90,7 @@
                 }
                 console.log(text) ;
             }
-        },50) ;
+        },30) ;
+
     })(window);
 </script>

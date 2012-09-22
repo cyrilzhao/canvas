@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/visual quick sort.html" line="62" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="1076eb75-274f-402f-b779-b7903179d146" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\zhaojian\Desktop\WebstormProjects\canvas\普通方式显示冒泡排序过程.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/visual bubble sort.html" afterPath="$PROJECT_DIR$/visual bubble sort.html" />
     </list>
     <ignored path="canvas.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,10 +37,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bubble sort.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bubble sort.html">
+      <file leaf-file-name="visual bubble sort.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/visual bubble sort.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="93" column="27" selection-start="2738" selection-end="2738" vertical-scroll-proportion="0.8480447">
+            <state line="52" column="23" selection-start="1668" selection-end="1668" vertical-scroll-proportion="-28.026316">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="visual selection sort.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/visual selection sort.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="82" column="26" selection-start="2429" selection-end="2429" vertical-scroll-proportion="-19.973684">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="visual quick sort.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/visual quick sort.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="99" column="71" selection-start="3106" selection-end="3106" vertical-scroll-proportion="3.0893855">
               <folding />
             </state>
           </provider>
@@ -67,6 +88,9 @@
         <option value="$PROJECT_DIR$/不规则的密室.html" />
         <option value="$PROJECT_DIR$/Vector.js" />
         <option value="$PROJECT_DIR$/bubble sort.html" />
+        <option value="$PROJECT_DIR$/visual bubble sort.html" />
+        <option value="$PROJECT_DIR$/visual selection sort.html" />
+        <option value="$PROJECT_DIR$/visual quick sort.html" />
       </list>
     </option>
   </component>
@@ -179,7 +203,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -263,12 +287,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Vector.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="33" selection-start="1327" selection-end="1327" vertical-scroll-proportion="0.0" />
+        <state line="49" column="33" selection-start="1327" selection-end="1327" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bubble sort.html">
+    <entry file="file://$PROJECT_DIR$/visual bubble sort.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="27" selection-start="2738" selection-end="2738" vertical-scroll-proportion="0.8480447">
+        <state line="52" column="23" selection-start="1668" selection-end="1668" vertical-scroll-proportion="-28.026316">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visual selection sort.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="26" selection-start="2429" selection-end="2429" vertical-scroll-proportion="-19.973684">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visual quick sort.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="71" selection-start="3106" selection-end="3106" vertical-scroll-proportion="3.0893855">
           <folding />
         </state>
       </provider>
