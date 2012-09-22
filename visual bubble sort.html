@@ -6,8 +6,8 @@
 </head>
 
 <body>
-<div style="margin:0 auto;width:710px;">
-    <canvas id="myCanvas" width=700 height= 400>
+<div style="margin:0 auto;width:900px;">
+    <canvas id="myCanvas" width=900 height= 600>
         Your browser dosen't support the canvas element.
     </canvas>
 </div>
@@ -31,44 +31,67 @@
         ctx.clearRect(0, 0, width, height) ;
         ctx.fillStyle = "#000000" ;
         ctx.fillRect(0, 0, width, height) ;
-        ctx.lineWidth = "1px" ;
+        ctx.lineWidth = "6px" ;
         ctx.strokeStyle = "#ffffff" ;
         ctx.beginPath() ;
-        for( var i = 1 ; i <= canvas.width ; i += 3 ) {
+        for( var i = 1 ; i <= width ; i += 9 ) {
             var tempHeight = getRandomNumber() ;
             //console.log("i: " + i + "height: " + height + "tempHeight: " + tempHeight) ;
             ctx.moveTo(i, height) ;
             ctx.lineTo(i, height-tempHeight) ;
-            lines.push(height-tempHeight) ;
+            var line = {
+                y : height - tempHeight ,
+                height : tempHeight
+            }
+            lines.push(line) ;
         }
         ctx.stroke() ;
 
         function repaint() {
             ctx.fillRect(0, 0, width, height) ;
             ctx.beginPath() ;
-            for( var i = 0 ; i < lines.length ; i += 3 ) {
-                ctx.moveTo(i+1, height) ;
-                ctx.lineTo(i+1, lines[i]) ;
+            var x = 1 ;
+            for( var k = 1 ; k < lines.length ; k ++ ) {
+                ctx.moveTo(x, height) ;
+                ctx.lineTo(x, lines[k].y) ;
+                console.log(x) ;
+                x = x + 9 ;
             }
             ctx.stroke() ;
             console.log("repaint") ;
         }
 
-        function swap(a, i, j) {
-            var temp = a[i] ;
-            a[i] = a[j] ;
-            a[j] = temp ;
-        }
-
-        var length = lines.length ;
-        for( var i = 1 ; i < length ; i ++ ) {
-            for( var j = 0 ; j < length - i ; j ++ ) {
-                if( lines[j] > lines[j+1] ) {
-                    swap(lines, j, j+1) ;
-                    repaint() ;
-                }
+        var i = 1 ;
+        var j = 0 ;
+        var N = lines.length ;
+        setTimeout(function() {
+            if( lines[j].height > lines[j+1].height ) {
+                var temp = lines[j] ;
+                lines[j] = lines[j+1] ;
+                lines[j+1] = temp ;
+                repaint() ;
             }
+
+            j ++ ;
+            if( j == N - i ) {
+                i ++ ;
+                j = 0 ;
+            }
+
+
+            if( i <= N - 1 ) {
+                setTimeout(arguments.callee,50) ;
+            }
+            else {
+                console.log(text) ;
+            }
+        },50) ;
+
+        var text = "" ;
+        for( var l = 0 ; l < lines.length ; l ++ ) {
+            text = text + lines[l].height + " " ;
         }
+        console.log(text) ;
 
     })(window);
 </script>

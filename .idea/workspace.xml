@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1076eb75-274f-402f-b779-b7903179d146" name="Default" comment="" />
+    <list default="true" id="1076eb75-274f-402f-b779-b7903179d146" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\zhaojian\Desktop\WebstormProjects\canvas\普通方式显示冒泡排序过程.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="canvas.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,10 +25,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Vector.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Vector.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Vector.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="10" selection-start="1494" selection-end="1494" vertical-scroll-proportion="0.39534885">
+            <state line="49" column="33" selection-start="1327" selection-end="1327" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bubble sort.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bubble sort.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="93" column="27" selection-start="2738" selection-end="2738" vertical-scroll-proportion="0.8480447">
               <folding />
             </state>
           </provider>
@@ -54,12 +66,14 @@
         <option value="$PROJECT_DIR$/Line.js" />
         <option value="$PROJECT_DIR$/不规则的密室.html" />
         <option value="$PROJECT_DIR$/Vector.js" />
+        <option value="$PROJECT_DIR$/bubble sort.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="width" value="1932" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -124,8 +138,8 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
@@ -165,13 +179,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1932" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13622129" sideWeight="0.0" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1359375" sideWeight="0.0" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -242,21 +256,19 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/普通方式显示冒泡排序过程.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="36" selection-start="1774" selection-end="1774" vertical-scroll-proportion="-0.8947368" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Line.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="11" selection-start="161" selection-end="161" vertical-scroll-proportion="-1.0782241">
-          <folding />
-        </state>
+        <state line="6" column="11" selection-start="161" selection-end="161" vertical-scroll-proportion="-1.0782241" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Vector.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="10" selection-start="1494" selection-end="1494" vertical-scroll-proportion="0.39534885">
+        <state line="49" column="33" selection-start="1327" selection-end="1327" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bubble sort.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="27" selection-start="2738" selection-end="2738" vertical-scroll-proportion="0.8480447">
           <folding />
         </state>
       </provider>
