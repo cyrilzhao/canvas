@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>普通方式显示冒泡排序过程</title>
+</head>
+
+<body>
+<div style="margin:0 auto;width:710px;">
+    <canvas id="myCanvas" width=700 height= 400>
+        Your browser dosen't support the canvas element.
+    </canvas>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    (function(window){
+        var canvas = document.getElementById("myCanvas") ;
+        var ctx = canvas.getContext('2d') ;
+        var height = canvas.height ;
+        var width = canvas.width ;
+
+        function getRandomNumber() {
+            var result = parseInt( Math.random() * height ) ;
+
+            return result ;
+        }
+
+        var lines = [] ;
+        ctx.clearRect(0, 0, width, height) ;
+        ctx.fillStyle = "#000000" ;
+        ctx.fillRect(0, 0, width, height) ;
+        ctx.lineWidth = "1px" ;
+        ctx.strokeStyle = "#ffffff" ;
+        ctx.beginPath() ;
+        for( var i = 1 ; i <= canvas.width ; i += 3 ) {
+            var tempHeight = getRandomNumber() ;
+            //console.log("i: " + i + "height: " + height + "tempHeight: " + tempHeight) ;
+            ctx.moveTo(i, height) ;
+            ctx.lineTo(i, height-tempHeight) ;
+            lines.push(height-tempHeight) ;
+        }
+        ctx.stroke() ;
+
+        function repaint() {
+            ctx.fillRect(0, 0, width, height) ;
+            ctx.beginPath() ;
+            for( var i = 0 ; i < lines.length ; i += 3 ) {
+                ctx.moveTo(i+1, height) ;
+                ctx.lineTo(i+1, lines[i]) ;
+            }
+            ctx.stroke() ;
+            console.log("repaint") ;
+        }
+
+        function swap(a, i, j) {
+            var temp = a[i] ;
+            a[i] = a[j] ;
+            a[j] = temp ;
+        }
+
+        var length = lines.length ;
+        for( var i = 1 ; i < length ; i ++ ) {
+            for( var j = 0 ; j < length - i ; j ++ ) {
+                if( lines[j] > lines[j+1] ) {
+                    swap(lines, j, j+1) ;
+                    repaint() ;
+                }
+            }
+        }
+
+    })(window);
+</script>
