@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>测试IOS中的touch事件</title>
+</head>
+
+<body>
+<div style="margin:0 auto;width:900px;">
+    <canvas id="myCanvas" width=900 height= 600>
+        Your browser dosen't support the canvas element.
+    </canvas>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    (function(window){
+        var canvas = document.getElementById("myCanvas") ;
+        // touch start listener
+        var height = canvas.height ;
+        var width = canvas.width ;
+        var ctx = canvas.getContext("2d") ;
+        ctx.fillStyle = "#00ff00" ;
+
+        function touchStart(event) {
+            event.preventDefault();
+            var touch = event.touches[0];
+            var startX = touch.pageX;
+            var startY = touch.pageY;
+
+            ctx.fillRect(startX-40, startY-40, 80, 80) ;
+        }
+        canvas.addEventListener("touchstart", touchStart, false) ;
+
+        function touchMove(event) {
+            event.preventDefault();
+            var touch = event.touches[0] ;
+            var x = touch.pageX ;
+            var y = touch.pageY ;
+            ctx.clearRect(0, 0, width, height) ;
+            ctx.fillRect(x-40, y-40, 80, 80) ;
+        }
+        canvas.addEventListener("touchmove", touchMove, false);
+
+        function touchEnd(event) {
+            ctx.clearRect(0, 0, width, height) ;
+        }
+        canvas.addEventListener("touchend", touchEnd, false);
+
+    })(window);
+</script>
