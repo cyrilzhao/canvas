@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>旋转三角形</title>
+<script src="Vector.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div style="margin:0 auto;width:900px;">
+    <canvas id="myCanvas" width=900 height= 600>
+        Your browser dosen't support the canvas element.
+    </canvas>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    (function(window){
+        var canvas = document.getElementById("myCanvas") ;
+        var ctx = canvas.getContext('2d') ;
+        var height = canvas.height ;
+        var width = canvas.width ;
+        ctx.fillStyle = "#000000" ;
+        ctx.fillRect(0, 0, width, height) ;
+        ctx.strokeStyle = "#ffffff" ;
+        var angel = 0 ;
+
+        var triangle = {
+            a : new Vector2(300, 300) ,
+            b : new Vector2(350, parseInt(300+50*Math.pow(3,0.5))) ,
+            c : new Vector2(250, parseInt(300+50*Math.pow(3,0.5))) ,
+            center : new Vector2(300, parseInt(300+100/3*Math.pow(3,0.5))) ,
+            draw : function(ctx) {
+                ctx.beginPath() ;
+                ctx.moveTo(this.a.x-this.center.x, this.a.y-this.center.y) ;
+                ctx.lineTo(this.b.x-this.center.x, this.b.y-this.center.y) ;
+                ctx.lineTo(this.c.x-this.center.x, this.c.y-this.center.y) ;
+                ctx.closePath() ;
+                ctx.stroke() ;
+            },
+            rotate : function(ctx) {
+                angel = angel + Math.PI/10 ;
+                ctx.fillRect(100, 100, 300, 400) ;
+                ctx.save() ;
+                ctx.translate(triangle.center.x, triangle.center.y) ;
+                ctx.rotate(angel) ;
+                this.draw(ctx) ;
+                ctx.restore() ;
+            }
+        };
+
+        setInterval(_temp(),100) ;
+        function _temp() {
+            return function() {
+                triangle.rotate(ctx) ;
+            }
+        }
+
+    })(window);
+</script>
