@@ -85,9 +85,15 @@
             steps.push(new Vector2(triangle.center.x+10*Math.cos(Math.PI/18*i), triangle.center.y-10*Math.sin(Math.PI/18*i) ) ) ;
         }
 
+        var totalTime = 0 ;
         setInterval(_temp,80) ;
         function _temp() {
             triangle.rotate(ctx) ;
+            totalTime += 1 ;
+            if( totalTime === 143 ) {
+                totalTime = 0 ;
+                ctx.fillRect(0, 0, width, height) ;
+            }
         }
     })(window);
 </script>
